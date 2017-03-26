@@ -6,6 +6,7 @@ PROJECT_INPUT_DATA_FOLDER=$2
 BLAST_RESULTS_FILE=$3
 DATA_SET_NAME=$4
 AVG_RPKM=$5
+PEAK_POS_FILE=$6
 
 # genscan data retrieval was not run on biocluster, but the script and the data
 # are in the folder below
@@ -81,8 +82,7 @@ awk -F"\t" -v OFS="\t" '{print $0,"overlap_[N-SCAN]"}' $HDR_w_TSS_GENSCAN_NSCAN 
 # Added March 14, 2017 - call script to add closest peak (h3k4me3) to file.  Also update header.
 FILE_TO_UPDATE=$BED_w_TSS_GENSCAN_NSCAN
 HDR_TO_UPDATE=$HDR_w_TSS_GENSCAN_NSCAN
-POS_FILE
-
+sh closest_peak.sh $OUTPUT_DATA_FOLDER $FILE_TO_UPDATE $HDR_TO_UPDATE $PEAK_POS_FILE $DATA_SET_NAME
 
 
 ################
@@ -100,7 +100,6 @@ POS_FILE
 # echo -e "chrom[rpkm]\tchromStart[rpkm]\tchromEnd[rpkm]\tname[rpkm]\tvalue[rpkm]\tstrand[rpkm]\tthickStart[rpkm]\tthickEnd[rpkm]\titemRbg[rpkm]\tblockCount[rpkm]\tblockSizes[rpkm]\tblockStarts[rpkm]\tAVG_RPKM" > $RPKM_HDR
 # paste $HDR_w_TSS_GENSCAN_NSCAN $RPKM_HDR > $HDR_w_TSS_GENSCAN_NSCAN_RPKM
 # awk -F"\t" -v OFS="\t" '{print $0,"overlap_[RPKM]"}' $HDR_w_TSS_GENSCAN_NSCAN_RPKM > $TMP && mv $TMP $HDR_w_TSS_GENSCAN_NSCAN_RPKM
-
 
 
 # put the final header and final data together and write it out.

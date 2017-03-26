@@ -99,35 +99,45 @@ AVG_RPKM_FILE_A30C="$PROJECT_INPUT_DATA_FOLDER"/RPKMS/output/A30C_rpkm_counts.be
 AVG_RPKM_FILE_FC30C="$PROJECT_INPUT_DATA_FOLDER"/RPKMS/output/FC30C_rpkm_counts.bed
 AVG_RPKM_FILE_H30C="$PROJECT_INPUT_DATA_FOLDER"/RPKMS/output/H30C_rpkm_counts.bed
 
+# add the POS ANNOtation and PEAK files created by Chris Seward
+A_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/AMY-H3k4me3_F3L0_200_peaks-anno.pos
+FC_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/FCX-H3k4me3_F3L0_200_peaks-anno.pos
+H_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/HYP-H3k4me3_F3L0_200_peaks-anno.pos
+
+A_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/AMY-H3k4me3_F3L0_200_peaks.pos
+FC_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/FCX-H3k4me3_F3L0_200_peaks.pos
+H_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/HYP-H3k4me3_F3L0_200_peaks.pos
+
+
 BLAST_RESULTS_FILE="$BLAST_FILE_A30C_E"
 DATA_SET_NAME="A30_E_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_A30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$A_H3K4ME3_POS_ANNO" "$A_H3K4ME3_POS_PEAK"
 
 BLAST_RESULTS_FILE="$BLAST_FILE_A30C_I"
 DATA_SET_NAME="A30_I_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_A30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$A_H3K4ME3_PEAKS" "$A_H3K4ME3_POS_PEAK"
 
 BLAST_RESULTS_FILE="$BLAST_FILE_FC30C_E"
 DATA_SET_NAME="FC30_E_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_FC30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$FC_H3K4ME3_PEAKS" "$A_H3K4ME3_POS_PEAK"
 
 BLAST_RESULTS_FILE="$BLAST_FILE_FC30C_I"
 DATA_SET_NAME="FC30_I_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_FC30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$FC_H3K4ME3_PEAKS" "$A_H3K4ME3_POS_PEAK"
 
 BLAST_RESULTS_FILE="$BLAST_FILE_H30C_E"
 DATA_SET_NAME="H30_E_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_H30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$H_H3K4ME3_PEAKS" "$A_H3K4ME3_POS_PEAK"
 
 BLAST_RESULTS_FILE="$BLAST_FILE_H30C_I"
 DATA_SET_NAME="H30_I_Exons"
 AVG_RPKM="$AVG_RPKM_FILE_H30C"
-sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM"
+sh build_individual_report.sh "$OUTPUT_DATA_FOLDER" "$INPUT_DATA_FOLDER" "$BLAST_RESULTS_FILE" "$DATA_SET_NAME" "$AVG_RPKM" "$H_H3K4ME3_PEAKS" "$A_H3K4ME3_POS_PEAK"
 
 #
 # We want to check how our all data set report compares to the NCBI 37.2 gtf file we used
