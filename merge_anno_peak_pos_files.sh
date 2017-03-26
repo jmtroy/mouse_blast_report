@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# script to merge homer annotation and peaks files
 ANNO_INPUT_FILE=$1
 PEAK_INPUT_FILE=$2
 PEAK_OUTPUT_BED_FILE=$3
