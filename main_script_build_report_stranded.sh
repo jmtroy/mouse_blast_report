@@ -104,9 +104,9 @@ A_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histon
 FC_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/FCX-H3k4me3_F3L0_200_peaks-anno.pos
 H_H3K4ME3_POS_ANNO=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/HYP-H3k4me3_F3L0_200_peaks-anno.pos
 
-A_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/AMY-H3k4me3_F3L0_200_peaks.pos
-FC_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/FCX-H3k4me3_F3L0_200_peaks.pos
-H_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/anno/HYP-H3k4me3_F3L0_200_peaks.pos
+A_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/peaks/mouse/AMY-H3k4me3_F3L0_200_peaks.pos
+FC_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/peaks/mouse/FCX-H3k4me3_F3L0_200_peaks.pos
+H_H3K4ME3_POS_PEAK=/home/groups/simons/Joe/mm_blast_project/input_data/mm_histone_mark_data/peaks/mouse/HYP-H3k4me3_F3L0_200_peaks.pos
 
 
 BLAST_RESULTS_FILE="$BLAST_FILE_A30C_E"
