@@ -52,12 +52,14 @@ mv $tmp1_bed $FILE_TO_UPDATE
 
 # add columns to the header using awk
 # use print 0 for the original header and then add the 10 other column headers
-awk -F $'\t'  'BEGIN {OFS=FS} {print $0, "chrom.H3K4ME3_PEAK", "chromStart.H3K4ME3_PEAK", "chromEnd.H3K4ME3_PEAK", "name.H3K4ME3_PEAK", "bedScore.H3K4ME3_PEAK", "Strand.H3K4ME3_PEAK", "homerAnnotation.H3K4ME3_PEAK","homerFindPeaksScore.H3K4ME3_PEAK","homeFoldChangeVsControl.H3K4ME3_PEAK","homerPvalueVsControl.H3K4ME3_PEAK","distance.H3K4ME3_PEAK"}' $HDR_TO_UPDATE > $tmp1_hdr
+# do not use "bedScore.H3K4ME3_PEAK" as column name, use "." for col 5 (jmt 3/28/17)
+awk -F $'\t'  'BEGIN {OFS=FS} {print $0, "chrom.H3K4ME3_PEAK", "chromStart.H3K4ME3_PEAK", "chromEnd.H3K4ME3_PEAK", "name.H3K4ME3_PEAK", ".", "Strand.H3K4ME3_PEAK", "homerAnnotation.H3K4ME3_PEAK","homer_mgiSymbol.H3K4ME3_PEAK","homerFindPeaksScore.H3K4ME3_PEAK","homeFoldChangeVsControl.H3K4ME3_PEAK","homerPvalueVsControl.H3K4ME3_PEAK","distance.H3K4ME3_PEAK"}' $HDR_TO_UPDATE > $tmp1_hdr
 mv $tmp1_hdr $HDR_TO_UPDATE
 
-# create file with only the peaks that were closest. which is the last 10 columns in 
-# the updated header file
-# and the last 11 columns in the updated exon file ($FILE_TO_UPDATE) 
+# create file with only the peaks that were closest. which is the last 11 columns in 
+# the updated header file  (but omit the very last one which is the distance from the exon to the peak)
+# and the last 11 columns in the updated exon file ($FILE_TO_UPDATE) (also omit the very last one which is the distance from the exon to the peak)
+# added sort -u to get only unique data.
 CLOSEST_PEAKS="$OUTPUT_DATA_FOLDER"/"$DATA_SET_NAME"_closest_peaks.txt
-awk -F $'\t' 'BEGIN {OFS=FS} {print $(NF-10),$(NF-9), $(NF-8), $(NF-7),$(NF-6),$(NF-5),$(NF-4),$(NF-3),$(NF-2),$(NF-1),$NF, ".",".","dataset"}' $HDR_TO_UPDATE > $CLOSEST_PEAKS
-awk -F $'\t' -v dataset=$DATA_SET_NAME 'BEGIN {OFS=FS} {print $(NF-10),$(NF-9), $(NF-8), $(NF-7),$(NF-6),$(NF-5),$(NF-4),$(NF-3),$(NF-2),$(NF-1),$NF, ".",".",dataset}' $FILE_TO_UPDATE >> $CLOSEST_PEAKS
+awk -F $'\t' 'BEGIN {OFS=FS} {print $(NF-11),$(NF-10),$(NF-9), $(NF-4), $(NF-7),$(NF-6),$(NF-5),$(NF-8),$(NF-3),$(NF-2),$(NF-1),".","dataset"}' $HDR_TO_UPDATE > $CLOSEST_PEAKS
+awk -F $'\t' -v dataset=$DATA_SET_NAME 'BEGIN {OFS=FS} {print $(NF-11),$(NF-10),$(NF-9), $(NF-4), $(NF-7),$(NF-6),$(NF-5),$(NF-8),$(NF-3),$(NF-2),$(NF-1), ".",dataset}' $FILE_TO_UPDATE | sort -u >> $CLOSEST_PEAKS
