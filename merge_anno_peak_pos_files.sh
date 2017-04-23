@@ -20,7 +20,7 @@ module load bedtools/2.25.0
 # "." > 5		value
 # col 5 > 6		strand
 # col 8 > 7		annotation (from Homer)
-# col 24 to 8	mgi symbol from homer
+# col 16 to 8	mgi symbol from homer
 TMP_ANNO_FILE=$OUTPUT_DATA_FOLDER/tmp_homer_anno.bed
 tail -n +2 $ANNO_INPUT_FILE | awk -F"\t" -v OFS="\t" '{print $2, $3, $4, $1, ".", $5, $8, $16}' > $TMP_ANNO_FILE
 
